@@ -1,190 +1,204 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Award, TrendingUp, Users, Quote } from "lucide-react";
+import { Eyebrow } from "../components/site-chrome";
+import portrait from "@/assets/harbron-portrait.jpg";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "William R. Harbron, Ed.D. — Executive Coaching & Advisory" },
+      {
+        name: "description",
+        content:
+          "Four decades guiding executive teams, boards, and complex organizations through change, growth, and cultural transformation.",
+      },
+      { property: "og:title", content: "William R. Harbron, Ed.D. — Executive Coaching & Advisory" },
+      {
+        property: "og:description",
+        content: "Strategic leadership, transformed at the top. Executive coaching and advisory.",
+      },
+    ],
+  }),
   component: Home,
 });
 
 const stats = [
-  { value: "47+", label: "Years of executive leadership" },
-  { value: "21", label: "Years as Superintendent, Dover NH" },
-  { value: "100s", label: "Leaders coached & developed" },
-  { value: "Ed.D.", label: "Doctor of Education" },
+  { value: "47+", label: "Years of Leadership" },
+  { value: "21", label: "Years as Superintendent" },
+  { value: "Ed.D.", label: "Doctorate in Education" },
+  { value: "100+", label: "Leaders Coached" },
 ];
 
 const competencies = [
-  "Executive Leadership & Governance",
-  "Organizational Transformation",
-  "Leadership Coaching & Development",
-  "Strategic Planning & Execution",
-  "Change Management & Culture",
-  "Board Advisory & Facilitation",
-  "Stakeholder Engagement",
-  "Operational Excellence",
-];
-
-const testimonials = [
   {
-    quote:
-      "William's coaching gave our executive team the clarity and alignment we'd been chasing for years. He combines warmth with absolute strategic rigor.",
-    name: "Senior Nonprofit Executive",
-    role: "Board Chair, New England",
+    icon: Award,
+    title: "Executive Leadership & Governance",
+    body: "Board advisory, governance frameworks, and senior leadership alignment across complex multi-stakeholder environments.",
   },
   {
-    quote:
-      "A rare leader who can sit with a board on Monday and a frontline team on Tuesday and elevate both. His transformation work is the real deal.",
-    name: "District Leadership Team",
-    role: "Public Sector",
+    icon: TrendingUp,
+    title: "Strategy & Transformation",
+    body: "Strategic planning, organizational transformation, and culture change initiatives that produce measurable, sustainable outcomes.",
   },
   {
-    quote:
-      "Twenty-one years of measurable impact as Superintendent speaks for itself. William builds leaders who outlast him.",
-    name: "Education Sector Colleague",
-    role: "Former District Director",
+    icon: Users,
+    title: "Coaching & Talent Development",
+    body: "Leadership coaching, talent pipelines, and team alignment that strengthen accountability and executive performance.",
   },
 ];
 
 function Home() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border bg-navy text-cream">
-        <div className="absolute inset-0 opacity-[0.07]" aria-hidden>
-          <div className="absolute -left-32 top-10 h-96 w-96 rounded-full bg-gold blur-3xl" />
-          <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-gold blur-3xl" />
-        </div>
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[1.4fr_1fr] md:py-32">
-          <div>
-            <div className="text-xs uppercase tracking-[0.3em] text-gold">
-              Executive Coach · Strategist · Advisor
-            </div>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-ink text-cream">
+        <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink/95 to-ink/70" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 py-24 md:py-36 lg:grid-cols-12 lg:gap-16 lg:px-10">
+          <div className="lg:col-span-7">
+            <Eyebrow>Executive Coaching & Advisory</Eyebrow>
             <h1 className="mt-6 font-serif text-5xl leading-[1.05] text-cream md:text-7xl">
-              Strategic leadership for organizations that refuse to stand still.
+              Strategic leadership,
+              <br />
+              <span className="italic text-gold">transformed at the top.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-cream/80">
-              Forty-seven years guiding executive teams, boards, and mission-driven institutions
-              through transformation, growth, and governance — across education, nonprofit, aged
-              care, and advisory sectors.
+            <p className="mt-8 max-w-2xl text-lg font-light leading-relaxed text-cream/75 md:text-xl">
+              Four decades guiding executive teams, boards, and complex organizations through
+              change, growth, and cultural transformation.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center rounded-sm bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-navy transition hover:bg-gold/90"
+                className="inline-flex items-center gap-2 bg-gold px-7 py-3.5 text-sm font-medium text-gold-foreground transition hover:opacity-90"
               >
-                Request an introduction
+                Book a Consultation <ArrowRight size={16} />
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center rounded-sm border border-cream/30 px-6 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-cream transition hover:border-gold hover:text-gold"
+                className="inline-flex items-center gap-2 border border-cream/30 px-7 py-3.5 text-sm font-medium text-cream transition hover:bg-cream/10"
               >
-                Explore services
+                Explore Services
               </Link>
             </div>
           </div>
-          <div className="relative">
-            <div className="aspect-[4/5] w-full rounded-sm border border-gold/30 bg-gradient-to-br from-navy via-navy to-[oklch(0.28_0.06_255)] p-10">
-              <div className="flex h-full flex-col justify-between">
-                <div className="font-serif text-7xl text-gold/90">WH</div>
-                <div>
-                  <div className="text-xs uppercase tracking-[0.2em] text-gold">In brief</div>
-                  <p className="mt-2 font-serif text-2xl leading-snug text-cream">
-                    "Leadership is the discipline of aligning people, purpose, and performance."
-                  </p>
-                </div>
-              </div>
+          <div className="flex justify-center lg:col-span-5 lg:justify-end">
+            <div className="relative">
+              <div
+                aria-hidden
+                className="absolute -inset-3 rounded-full bg-gradient-to-br from-gold/40 via-gold/10 to-transparent blur-2xl"
+              />
+              <div
+                aria-hidden
+                className="absolute -inset-1 rounded-full bg-gradient-to-br from-gold/70 to-gold/20"
+              />
+              <img
+                src={portrait}
+                alt="Dr. William R. Harbron, Ed.D. — Executive Coach & Leadership Advisor"
+                width={520}
+                height={520}
+                className="relative h-64 w-64 rounded-full object-cover shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] ring-1 ring-cream/20 sm:h-80 sm:w-80 lg:h-[26rem] lg:w-[26rem]"
+              />
             </div>
           </div>
         </div>
-      </section>
-
-      {/* STATS */}
-      <section className="border-b border-border bg-secondary/40">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px overflow-hidden bg-border px-0 md:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="bg-background px-6 py-10 text-center">
-              <div className="font-serif text-4xl text-navy md:text-5xl">{s.value}</div>
-              <div className="mt-2 text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* VALUE */}
-      <section className="mx-auto max-w-6xl px-6 py-24">
-        <div className="grid gap-16 md:grid-cols-[1fr_1.4fr]">
-          <div>
-            <div className="text-xs uppercase tracking-[0.22em] text-gold">Value Proposition</div>
-            <h2 className="mt-4 font-serif text-4xl text-navy">
-              Public-sector gravitas. Private-sector execution.
-            </h2>
-          </div>
-          <div className="space-y-5 text-lg leading-relaxed text-foreground/85">
-            <p>
-              A highly accomplished executive leader combining{" "}
-              <strong className="text-navy">strategic vision</strong>,{" "}
-              <strong className="text-navy">operational expertise</strong>, and{" "}
-              <strong className="text-navy">leadership excellence</strong> to deliver
-              transformation, growth, and measurable outcomes.
-            </p>
-            <p>
-              I bring a unique blend of public sector leadership and private consulting impact — a
-              strong fit for Director-level roles in aged care, business development, and complex
-              organizational environments requiring transformation and strategic alignment.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-16 grid grid-cols-2 gap-px bg-border md:grid-cols-4">
-          {competencies.map((c) => (
-            <div
-              key={c}
-              className="bg-background px-5 py-6 text-sm font-medium leading-snug text-navy"
-            >
-              {c}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto max-w-6xl px-6 py-24">
-          <div className="text-xs uppercase tracking-[0.22em] text-gold">Testimonials</div>
-          <h2 className="mt-4 font-serif text-4xl text-navy">What partners and boards say</h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {testimonials.map((t) => (
-              <figure
-                key={t.name}
-                className="flex flex-col justify-between rounded-sm border border-border bg-background p-8"
+        <div className="relative border-t border-cream/10 bg-ink/60 backdrop-blur">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 px-6 md:grid-cols-4 lg:px-10">
+            {stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`px-2 py-8 text-center ${i < stats.length - 1 ? "border-r border-cream/10" : ""}`}
               >
-                <blockquote className="font-serif text-xl leading-snug text-navy">
-                  "{t.quote}"
-                </blockquote>
-                <figcaption className="mt-8 border-t border-border pt-4">
-                  <div className="text-sm font-semibold text-navy">{t.name}</div>
-                  <div className="text-xs uppercase tracking-wide text-muted-foreground">
-                    {t.role}
-                  </div>
-                </figcaption>
-              </figure>
+                <div className="font-serif text-3xl text-gold md:text-4xl">{s.value}</div>
+                <div className="mt-1 text-xs uppercase tracking-widest text-cream/60">{s.label}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Profile */}
+      <section className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-12 md:py-32 lg:px-10">
+        <div className="md:col-span-4">
+          <Eyebrow>Profile</Eyebrow>
+          <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl">
+            A measured voice in executive leadership.
+          </h2>
+        </div>
+        <div className="border-border md:col-span-8 md:border-l md:pl-12">
+          <p className="text-lg leading-relaxed text-foreground/85">
+            Dr. William R. Harbron is a strategic and results-driven executive leader with over{" "}
+            <strong>47 years of experience</strong> driving organizational performance, leadership
+            transformation, and large-scale operational excellence across education, nonprofit, and
+            advisory sectors.
+          </p>
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+            As Founder of WRH Coaching & Consulting LLC and former 21-year Superintendent of the
+            Dover School District, William partners with senior leaders, executive boards, and
+            cross-functional teams to align business strategy with organizational culture —
+            delivering sustainable growth and measurable impact.
+          </p>
+          <Link
+            to="/about"
+            className="mt-8 inline-flex items-center gap-2 font-medium text-primary transition-all hover:gap-3"
+          >
+            Read the full journey <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      {/* Competencies */}
+      <section className="border-y border-border bg-secondary/60">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+          <div className="mx-auto max-w-2xl text-center">
+            <Eyebrow center>Core Competencies</Eyebrow>
+            <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl">
+              Where executive impact is made.
+            </h2>
+          </div>
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
+            {competencies.map(({ icon: Icon, title, body }) => (
+              <div
+                key={title}
+                className="border border-border bg-card p-8 transition-shadow hover:shadow-[var(--shadow-card)]"
+              >
+                <div className="flex h-12 w-12 items-center justify-center bg-primary text-primary-foreground">
+                  <Icon size={20} />
+                </div>
+                <h3 className="mt-6 font-serif text-2xl text-primary">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quote */}
+      <section className="mx-auto max-w-5xl px-6 py-28 text-center lg:px-10">
+        <Quote className="mx-auto text-gold" size={32} />
+        <blockquote className="mt-6 font-serif text-3xl italic leading-snug text-primary md:text-4xl">
+          “William's counsel reshaped how our executive team approached strategy and culture. Rare
+          clarity, paired with four decades of hard-earned wisdom.”
+        </blockquote>
+        <div className="mt-8 text-sm uppercase tracking-widest text-muted-foreground">
+          Senior Leader — Nonprofit Sector
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="mx-auto max-w-6xl px-6 py-24 text-center">
-        <div className="text-xs uppercase tracking-[0.22em] text-gold">Engage</div>
-        <h2 className="mx-auto mt-4 max-w-3xl font-serif text-5xl text-navy">
-          Available for advisory, coaching, and Director-level executive roles.
-        </h2>
-        <Link
-          to="/contact"
-          className="mt-10 inline-flex items-center rounded-sm bg-navy px-8 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-cream transition hover:bg-navy/90"
-        >
-          Begin the conversation
-        </Link>
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 py-20 md:flex-row md:items-center md:py-24 lg:px-10">
+          <div>
+            <Eyebrow>Begin the Conversation</Eyebrow>
+            <h2 className="mt-4 font-serif text-3xl md:text-4xl">
+              Ready to bring executive clarity to your next chapter?
+            </h2>
+          </div>
+          <Link
+            to="/contact"
+            className="inline-flex shrink-0 items-center gap-2 bg-gold px-7 py-3.5 text-sm font-medium text-gold-foreground transition hover:opacity-90"
+          >
+            Schedule an Introduction <ArrowRight size={16} />
+          </Link>
+        </div>
       </section>
     </>
   );

@@ -1,60 +1,83 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PageHero } from "../components/site-chrome";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { Eyebrow, PageHero } from "../components/site-chrome";
 
 export const Route = createFileRoute("/about")({
+  head: () => ({
+    meta: [
+      { title: "About — William R. Harbron, Ed.D." },
+      {
+        name: "description",
+        content:
+          "A career built on strategic clarity and measurable transformation across education, nonprofit, and advisory sectors.",
+      },
+      { property: "og:title", content: "About — William R. Harbron, Ed.D." },
+      {
+        property: "og:description",
+        content: "Four decades of executive leadership, governance, and coaching impact.",
+      },
+    ],
+  }),
   component: About,
 });
 
 const journey = [
   {
     period: "2022 — Present",
-    title: "Founder & Executive Coach",
+    role: "Founder & Executive Coach",
     org: "WRH Coaching & Consulting LLC · Dover, NH",
-    points: [
-      "Executive coaching and leadership advisory to senior leaders across education, nonprofit, and business sectors.",
-      "Design and implementation of organizational development and culture transformation strategies.",
-      "Board advisory on governance, performance, and leadership effectiveness.",
-      "Improved executive decision-making and clarity across multiple client organizations.",
+    bullets: [
+      "Executive coaching and leadership advisory across education, nonprofit, and business sectors.",
+      "Design organizational development and culture transformation strategies.",
+      "Facilitate strategic planning and leadership alignment workshops.",
+      "Advise boards and executive teams on governance and performance.",
     ],
   },
   {
     period: "2001 — 2022",
-    title: "Superintendent of Schools",
+    role: "Superintendent of Schools",
     org: "Dover School District (SAU 11) · Dover, NH",
-    points: [
-      "Directed all academic, operational, and financial functions of the district for 21 years.",
-      "Led large-scale organizational transformation improving communication and operational efficiency.",
-      "Delivered multi-year strategic plans aligned with performance, growth, and sustainability.",
-      "Built leadership pipelines, mentoring professionals into senior leadership and executive roles.",
+    bullets: [
+      "Directed all academic, operational, and financial functions of the district.",
+      "Led multi-year strategic planning and large-scale organizational transformation.",
+      "Managed executive leadership team, principals, and departmental directors.",
+      "Built leadership pipelines, mentoring professionals into senior roles.",
     ],
   },
   {
-    period: "1999 — 2005",
-    title: "Superintendent / Senior Leadership Roles",
-    org: "Various School Districts · WI, OH, NH",
-    points: [
-      "Oversaw district-wide operations including curriculum, instruction, and leadership development.",
-      "Implemented professional development systems improving workforce performance.",
-      "Designed instructional improvement strategies that enhanced organizational performance.",
+    period: "1990 — 2001",
+    role: "Superintendent / Senior Leadership",
+    org: "Various Districts · Wisconsin, Ohio, NH",
+    bullets: [
+      "Oversaw curriculum, instruction, and district-wide operations.",
+      "Implemented professional development systems and instructional improvement strategies.",
+      "Strengthened leadership capability across multiple institutions.",
     ],
   },
   {
     period: "1976 — 1990",
-    title: "Principal & Early Career Leadership",
-    org: "Elementary and Middle Schools · WI, OH",
-    points: [
+    role: "Principal & Early Career Leadership",
+    org: "Elementary & Middle Schools · Wisconsin, Ohio",
+    bullets: [
       "Led school operations, staff management, and instructional delivery.",
-      "Developed team-based leadership models and student-centered environments.",
-      "Established strong leadership and operational foundations early in career.",
+      "Built foundational systems for team-based leadership and performance improvement.",
     ],
   },
 ];
 
 const education = [
-  { school: "Edgewood University, Madison, WI", degree: "Doctor of Education (Ed.D.)" },
-  { school: "University of Wisconsin–Milwaukee", degree: "Education Specialist Degree" },
-  { school: "Miami University, Oxford, OH", degree: "Master of Education" },
-  { school: "Miami University, Oxford, OH", degree: "Bachelor of Science" },
+  { degree: "Doctor of Education (Ed.D.)", school: "Edgewood University, Madison, WI" },
+  { degree: "Education Specialist Degree", school: "University of Wisconsin–Milwaukee" },
+  { degree: "Master of Education", school: "Miami University, Oxford, OH" },
+  { degree: "Bachelor of Science", school: "Miami University, Oxford, OH" },
+];
+
+const certifications = [
+  "Working Genius Certified Facilitator",
+  "John Maxwell Certified Coach",
+  "Leadership Assessment & Strengths-Based Coaching",
+  "Organizational Health & Culture Development",
+  "Change Management & Strategic Communication",
 ];
 
 function About() {
@@ -62,77 +85,111 @@ function About() {
     <>
       <PageHero
         eyebrow="Executive Profile"
-        title="A career built on transforming organizations and the leaders within them."
-        intro="Strategic and results-driven executive leader with over 47 years of experience driving organizational performance, leadership transformation, and operational excellence across education, nonprofit, and advisory sectors."
+        title={
+          <>
+            A career built on strategic clarity and{" "}
+            <span className="italic text-gold">measurable transformation.</span>
+          </>
+        }
+        intro="Dr. Harbron has spent more than four decades at the intersection of executive leadership, organizational health, and strategic execution — partnering with boards, senior teams, and mission-driven institutions to deliver sustainable outcomes."
       />
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-12 md:grid-cols-[1fr_2fr]">
-          <div>
-            <div className="text-xs uppercase tracking-[0.22em] text-gold">Career Journey</div>
-            <h2 className="mt-3 font-serif text-3xl text-navy">Five decades of impact.</h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              From classroom leadership to executive boardrooms, each chapter has reinforced a
-              single conviction: organizations rise on the quality of their leaders.
-            </p>
-          </div>
-          <ol className="relative space-y-12 border-l border-border pl-8">
-            {journey.map((j) => (
-              <li key={j.period} className="relative">
-                <span className="absolute -left-[37px] top-2 flex h-4 w-4 items-center justify-center">
-                  <span className="h-2.5 w-2.5 rounded-full bg-gold ring-4 ring-background" />
-                </span>
-                <div className="text-xs uppercase tracking-[0.18em] text-gold">{j.period}</div>
-                <h3 className="mt-1 font-serif text-2xl text-navy">{j.title}</h3>
-                <div className="text-sm text-muted-foreground">{j.org}</div>
-                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-foreground/85">
-                  {j.points.map((p) => (
-                    <li key={p} className="flex gap-3">
-                      <span className="mt-2 h-px w-3 flex-none bg-gold" />
-                      <span>{p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ol>
+      {/* Value Proposition */}
+      <section className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-12 lg:px-10">
+        <div className="md:col-span-4">
+          <Eyebrow>Value Proposition</Eyebrow>
+          <h2 className="mt-4 font-serif text-3xl text-primary md:text-4xl">
+            Public-sector leadership meets private advisory impact.
+          </h2>
+        </div>
+        <div className="border-border md:col-span-8 md:border-l md:pl-12">
+          <p className="text-lg leading-relaxed text-foreground/85">
+            A highly accomplished executive leader combining <strong>strategic vision</strong>,{" "}
+            <strong>operational expertise</strong>, and <strong>leadership excellence</strong> to
+            deliver transformation, growth, and measurable outcomes.
+          </p>
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+            William brings a unique blend of public sector leadership and private consulting impact
+            — making a strong fit for Director-level roles in aged care, business development, and
+            complex organizational environments.
+          </p>
         </div>
       </section>
 
-      <section className="border-t border-border bg-secondary/40">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2">
-          <div>
-            <div className="text-xs uppercase tracking-[0.22em] text-gold">Education</div>
-            <h2 className="mt-3 font-serif text-3xl text-navy">Academic foundation</h2>
-            <ul className="mt-6 divide-y divide-border border-y border-border">
-              {education.map((e) => (
-                <li key={e.degree} className="flex items-center justify-between py-4">
-                  <div>
-                    <div className="font-medium text-navy">{e.degree}</div>
-                    <div className="text-sm text-muted-foreground">{e.school}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+      {/* Career journey */}
+      <section className="border-y border-border bg-secondary/60">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+          <div className="max-w-2xl">
+            <Eyebrow>Career Journey</Eyebrow>
+            <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl">
+              Four decades of executive leadership.
+            </h2>
           </div>
-          <div>
-            <div className="text-xs uppercase tracking-[0.22em] text-gold">Philosophy</div>
-            <h2 className="mt-3 font-serif text-3xl text-navy">How I lead</h2>
-            <div className="mt-6 space-y-5 text-base leading-relaxed text-foreground/85">
-              <p>
-                I believe transformation begins with clarity — clarity of strategy, of culture, and
-                of the leadership behaviors that move an organization forward.
-              </p>
-              <p>
-                My work pairs strategic frameworks with the unglamorous discipline of execution.
-                Boards get governance maturity. Executives get sharper decisions. Teams get the
-                alignment they were missing.
-              </p>
-              <p className="border-l-2 border-gold pl-5 font-serif text-xl text-navy">
-                "Sustainable impact is built one leader, one decision, one aligned team at a time."
-              </p>
+          <div className="mt-16 space-y-12">
+            {journey.map((j) => (
+              <div key={j.period} className="grid gap-6 md:grid-cols-12">
+                <div className="md:col-span-3">
+                  <div className="text-xs uppercase tracking-[0.22em] text-gold">{j.period}</div>
+                </div>
+                <div className="border-l border-border pl-6 md:col-span-9 md:pl-10">
+                  <h3 className="font-serif text-2xl text-primary">{j.role}</h3>
+                  <div className="mt-1 text-sm text-muted-foreground">{j.org}</div>
+                  <ul className="mt-5 space-y-2 text-base leading-relaxed text-foreground/85">
+                    {j.bullets.map((b) => (
+                      <li key={b} className="flex gap-3">
+                        <span className="mt-2 h-1 w-1 shrink-0 bg-gold" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Credentials */}
+      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <div className="max-w-2xl">
+          <Eyebrow>Academic Credentials</Eyebrow>
+          <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl">Education</h2>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {education.map((e) => (
+            <div key={e.degree} className="border border-border bg-card p-8">
+              <div className="font-serif text-xl text-primary">{e.degree}</div>
+              <div className="mt-2 text-sm text-muted-foreground">{e.school}</div>
             </div>
-          </div>
+          ))}
+        </div>
+
+        <div className="mt-20 max-w-2xl">
+          <Eyebrow>Professional Development</Eyebrow>
+          <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl">Certifications</h2>
+        </div>
+        <ul className="mt-10 grid gap-px bg-border md:grid-cols-2">
+          {certifications.map((c) => (
+            <li key={c} className="bg-card p-6 text-base text-foreground/85">
+              <span className="text-gold">— </span>
+              {c}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 py-20 md:flex-row md:items-center lg:px-10">
+          <h2 className="font-serif text-3xl md:text-4xl">
+            Considering executive coaching or advisory engagement?
+          </h2>
+          <Link
+            to="/services"
+            className="inline-flex shrink-0 items-center gap-2 bg-gold px-7 py-3.5 text-sm font-medium text-gold-foreground transition hover:opacity-90"
+          >
+            View Services <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
     </>
