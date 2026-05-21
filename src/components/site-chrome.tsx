@@ -1,86 +1,137 @@
 import { Link } from "@tanstack/react-router";
+import { Phone, Mail, MapPin, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/insights", label: "Insights" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
+  const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <Link to="/" className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-navy font-serif text-base text-gold">
-            WH
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+        <Link to="/" className="group flex items-baseline gap-3">
+          <span className="font-serif text-2xl tracking-tight text-primary">W. R. Harbron</span>
+          <span className="hidden text-[0.65rem] uppercase tracking-[0.25em] text-muted-foreground sm:inline">
+            Ed.D.
           </span>
-          <div className="leading-tight">
-            <div className="font-serif text-lg text-navy">William R. Harbron, Ed.D.</div>
-            <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              Executive Leadership · Coaching · Advisory
-            </div>
-          </div>
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-10 md:flex">
           {nav.map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              activeProps={{ className: "text-navy" }}
-              inactiveProps={{ className: "text-muted-foreground hover:text-navy" }}
-              className="text-sm font-medium tracking-wide transition-colors"
+              activeProps={{ className: "text-primary" }}
+              inactiveProps={{ className: "text-foreground/75 hover:text-primary" }}
+              className="relative text-sm font-medium transition-colors"
+              activeOptions={{ exact: item.to === "/" }}
             >
               {item.label}
             </Link>
           ))}
           <Link
             to="/contact"
-            className="inline-flex items-center rounded-sm border border-navy bg-navy px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-cream transition hover:bg-navy/90"
+            className="ml-2 inline-flex items-center gap-2 bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-ink"
           >
-            Engage
+            Book a Consultation
           </Link>
         </nav>
+        <button
+          className="text-primary md:hidden"
+          aria-label="Toggle menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
+      {open && (
+        <div className="border-t border-border bg-background md:hidden">
+          <nav className="mx-auto flex max-w-7xl flex-col px-6 py-4">
+            {nav.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={() => setOpen(false)}
+                className="py-3 text-sm font-medium text-foreground/80"
+                activeProps={{ className: "text-primary" }}
+                activeOptions={{ exact: item.to === "/" }}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="mt-2 inline-flex items-center justify-center bg-primary px-5 py-3 text-sm font-medium text-primary-foreground"
+            >
+              Book a Consultation
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-border bg-navy text-cream/80">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-3">
+    <footer className="mt-24 bg-ink text-cream/85">
+      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-3 lg:px-10">
         <div>
-          <div className="font-serif text-xl text-cream">William R. Harbron, Ed.D.</div>
-          <p className="mt-3 text-sm leading-relaxed text-cream/70">
-            Executive coach and organizational strategist serving leaders across education,
-            nonprofit, aged care, and mission-driven sectors.
+          <div className="font-serif text-2xl text-cream">William R. Harbron, Ed.D.</div>
+          <p className="mt-3 text-sm leading-relaxed text-cream/65">
+            Executive Coach & Organizational Transformation Advisor. Four decades of leadership
+            across education, nonprofit, and advisory sectors.
           </p>
+          <div className="mt-6 h-px w-12 bg-gold" />
         </div>
         <div>
-          <div className="mb-3 text-xs uppercase tracking-[0.18em] text-gold">Contact</div>
-          <p className="text-sm">+1 920-205-8799</p>
-          <p className="text-sm">wrharbron@outlook.com</p>
-          <p className="mt-1 text-sm text-cream/60">Dover, New Hampshire, USA</p>
-        </div>
-        <div>
-          <div className="mb-3 text-xs uppercase tracking-[0.18em] text-gold">Navigate</div>
-          <ul className="space-y-1.5 text-sm">
+          <div className="eyebrow">Navigate</div>
+          <ul className="mt-4 space-y-2 text-sm">
             {nav.map((n) => (
               <li key={n.to}>
-                <Link to={n.to} className="hover:text-gold">
+                <Link to={n.to} className="transition-colors hover:text-gold">
                   {n.label}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
+        <div>
+          <div className="eyebrow">Direct Contact</div>
+          <ul className="mt-4 space-y-3 text-sm">
+            <li className="flex items-center gap-3">
+              <Phone size={14} className="text-gold" /> +1 920-205-8799
+            </li>
+            <li className="flex items-center gap-3">
+              <Mail size={14} className="text-gold" /> wrharbron@outlook.com
+            </li>
+            <li className="flex items-center gap-3">
+              <MapPin size={14} className="text-gold" /> Dover, New Hampshire
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className="border-t border-cream/10 py-5 text-center text-xs text-cream/50">
-        © {new Date().getFullYear()} WRH Coaching & Consulting LLC. All rights reserved.
+      <div className="border-t border-cream/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-cream/55 md:flex-row lg:px-10">
+          <div>© {new Date().getFullYear()} WRH Coaching & Consulting LLC. All rights reserved.</div>
+          <div className="tracking-widest uppercase">Executive Leadership · Coaching · Advisory</div>
+        </div>
       </div>
     </footer>
+  );
+}
+
+export function Eyebrow({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
+  return (
+    <div className={`eyebrow ${center ? "justify-center" : ""}`}>
+      <span className="gold-rule" />
+      {children}
+    </div>
   );
 }
 
@@ -90,14 +141,16 @@ export function PageHero({
   intro,
 }: {
   eyebrow: string;
-  title: string;
+  title: React.ReactNode;
   intro?: string;
 }) {
   return (
-    <section className="border-b border-border bg-secondary/50">
-      <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="text-xs uppercase tracking-[0.22em] text-gold">{eyebrow}</div>
-        <h1 className="mt-4 max-w-3xl font-serif text-5xl text-navy md:text-6xl">{title}</h1>
+    <section className="border-b border-border bg-secondary/60">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:py-28 lg:px-10">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-primary md:text-6xl">
+          {title}
+        </h1>
         {intro && (
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
         )}
