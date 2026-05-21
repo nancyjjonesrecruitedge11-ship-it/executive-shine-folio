@@ -72,19 +72,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "William R. Harbron, Ed.D. — Executive Leadership & Coaching" },
+      {
+        name: "description",
+        content:
+          "Executive coach and organizational strategist with 47+ years guiding leaders through transformation, growth, and governance across education, nonprofit, and aged care sectors.",
+      },
+      { name: "author", content: "William R. Harbron, Ed.D." },
+      { property: "og:title", content: "William R. Harbron, Ed.D. — Executive Coach & Advisor" },
+      {
+        property: "og:description",
+        content: "47+ years of executive leadership. Coaching, advisory, and organizational transformation.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap",
       },
     ],
   }),
@@ -108,12 +117,20 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { SiteHeader, SiteFooter } from "../components/site-chrome";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="flex min-h-screen flex-col">
+        <SiteHeader />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <SiteFooter />
+      </div>
     </QueryClientProvider>
   );
 }
