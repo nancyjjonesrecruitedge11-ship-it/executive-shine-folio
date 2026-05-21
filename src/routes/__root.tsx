@@ -123,17 +123,21 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { useRouterState } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "../components/site-chrome";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
         <SiteHeader />
         <main className="flex-1">
-          <Outlet />
+          <div key={pathname} className="page-transition">
+            <Outlet />
+          </div>
         </main>
         <SiteFooter />
       </div>
