@@ -1,12 +1,12 @@
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink } from "react-router-dom";
 import { Phone, Mail, MapPin, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const nav = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
-  { to: "/contact", label: "Contact" },
+  { to: "/", label: "Home", end: true },
+  { to: "/about", label: "About", end: false },
+  { to: "/services", label: "Services", end: false },
+  { to: "/contact", label: "Contact", end: false },
 ] as const;
 
 export function SiteHeader() {
@@ -22,16 +22,18 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-10 md:flex">
           {nav.map((item) => (
-            <Link
+            <NavLink
               key={item.to}
               to={item.to}
-              activeProps={{ className: "text-primary" }}
-              inactiveProps={{ className: "text-foreground/75 hover:text-primary" }}
-              className="relative text-sm font-medium transition-colors"
-              activeOptions={{ exact: item.to === "/" }}
+              end={item.end}
+              className={({ isActive }) =>
+                `relative text-sm font-medium transition-colors ${
+                  isActive ? "text-primary" : "text-foreground/75 hover:text-primary"
+                }`
+              }
             >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
           <Link
             to="/contact"
@@ -52,16 +54,17 @@ export function SiteHeader() {
         <div className="border-t border-border bg-background md:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col px-6 py-4">
             {nav.map((item) => (
-              <Link
+              <NavLink
                 key={item.to}
                 to={item.to}
+                end={item.end}
                 onClick={() => setOpen(false)}
-                className="py-3 text-sm font-medium text-foreground/80"
-                activeProps={{ className: "text-primary" }}
-                activeOptions={{ exact: item.to === "/" }}
+                className={({ isActive }) =>
+                  `py-3 text-sm font-medium ${isActive ? "text-primary" : "text-foreground/80"}`
+                }
               >
                 {item.label}
-              </Link>
+              </NavLink>
             ))}
             <Link
               to="/contact"
